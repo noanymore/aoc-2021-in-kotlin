@@ -13,7 +13,8 @@ fun main() {
     }
 
     fun part2(input: List<String>): Int {
-        return input.size
+        val max3 : List<Int> = sum.sortedByDescending { it }
+        return max3[0]+ max3[1]+ max3[2]
     }
 
     // test if implementation meets criteria from the description, like:
