@@ -1,21 +1,21 @@
 fun main() {
-
+//mjqjpqmgbljsphdztnvjfqwrcgsmlb
     fun part1(input: String): Int {
         var start = 0
         var end = 0
         var nextStart = 0
         var hasNext = false
         val cache = hashMapOf<Char,Int>()
+        cache.put(input[start],start)
         while (end - start < 14){
             if (end == start) end++
-            if (input[start]!=input[end]){
+            if (!cache.contains(input[end])){
                 cache[input[end]] = end
                 if(!hasNext) {
                     nextStart = end
                     hasNext = true
                 }
-            }
-            if(cache.contains(input[end])){
+            }else {
                 val index = cache[input[end]]
                 if(index == end-1){
                     nextStart = end+1
@@ -23,7 +23,10 @@ fun main() {
                     nextStart = cache.values.filter { it > index!! }.min()
                 }
                 start = nextStart
+                end = nextStart
                 hasNext = false
+                cache.clear()
+                cache[input[start]] = start
             }
             end++
         }
